@@ -89,7 +89,6 @@ public class Tower : MonoBehaviour
         {
             isShoot = true;
             target.GetComponent<Enemy>().SetDamage(damage);
-            TowerSound.Play();
             yield return new WaitForSeconds(delay);
             isShoot = false;
         }
