@@ -3,35 +3,29 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    protected Transform target;
+    protected Transform CurrentTarget;
     [SerializeField]
-    protected float range;
+    protected float AttackRange;
     [SerializeField]
-    protected float damage;
+    protected float TowerDamage;
     [SerializeField]
-    protected float turnSpeed = 10f;
+    protected float TowerTurnSpeed;
     [SerializeField]
-    protected float delay;
+    protected float DelayBetweenShots;
     [SerializeField]
-    protected string enemyTag = "Enemy";
-    protected Transform partToRotate;
+    protected string EnemyTag = "Enemy";
     protected bool isShoot = false;
     protected Enemy targetEnemy;
 
-
-
     void Start()
     {
-        partToRotate = transform;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (CurrentTarget == null)
             return;
 
         if (!isShoot)
@@ -39,21 +33,12 @@ public class Tower : MonoBehaviour
             StartCoroutine(Shoot());
         }
 
-        LockOnTarget();
-
-    }
-
-    void LockOnTarget()
-    {
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        LockToNewTarget();
     }
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
@@ -66,31 +51,38 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= range)
+        if (nearestEnemy != null && shortestDistance <= AttackRange)
         {
-            target = nearestEnemy.transform;
+            CurrentTarget = nearestEnemy.transform;
             targetEnemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
         {
-            target = null;
+            CurrentTarget = null;
         }
     }
 
+    void LockToNewTarget()
+    {
+        Vector3 dir = CurrentTarget.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * TowerTurnSpeed).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+    IEnumerator Shoot()
+    {   
+        if (CurrentTarget != null)
+        {
+            isShoot = true;
+            CurrentTarget.GetComponent<Enemy>().SetDamage(TowerDamage);
+            yield return new WaitForSeconds(DelayBetweenShots);
+            isShoot = false;
+        }
+    }
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, range);
-    }
-
-    IEnumerator Shoot()
-    {   
-        if (target != null)
-        {
-            isShoot = true;
-            target.GetComponent<Enemy>().SetDamage(damage);
-            yield return new WaitForSeconds(delay);
-            isShoot = false;
-        }
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 }

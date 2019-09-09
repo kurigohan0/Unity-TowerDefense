@@ -5,17 +5,16 @@ using UnityEngine;
 public class WaveSpawn : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Transform enemyPrefab;
+    [SerializeField] private Transform EnemyPrefab;
     private float countdown = 2f;
-    [SerializeField] private Transform spawnPosition;
-
+    [SerializeField] private Transform SpawnPosition;
     private int waveNumber = 0;
-
-    public float TimeBetweenWaves = 5f;
+    [SerializeField]
+    private float TimeBetweenWaves = 5f;
 
     void Start()
     {
-        spawnPosition = transform;
+        SpawnPosition = transform;
     }
 
     // Update is called once per frame
@@ -43,7 +42,7 @@ public class WaveSpawn : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation);
+        Instantiate(EnemyPrefab, SpawnPosition.position, SpawnPosition.rotation);
     }
 
     public int GetWave()

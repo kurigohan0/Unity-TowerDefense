@@ -294,4 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb54be939fbc2e64da4a5d27db14197c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  EnemySpeed: 30
+  HP: 100
+  EnemyDamage: 10
+  minBounty: 10
+  maxBounty: 13

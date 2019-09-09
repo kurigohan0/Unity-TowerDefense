@@ -1,42 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions.Must;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 10f;
-    private float HP = 100;
-    private float Damage = 10;
+    [SerializeField]
+    protected float EnemySpeed = 10f;
+    [SerializeField]
+    protected float HP = 100;
+    [SerializeField]
+    protected float EnemyDamage = 10;
+    [SerializeField]
+    private int minBounty;
+    [SerializeField]
+    private int maxBounty;
 
-    private Transform target;
+    private Transform TargetWaypoint;
     private int waypointIndex = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        target = Waypoints.points[0];
+        TargetWaypoint = Waypoints.points[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HP < 1)
-        {
-            Destroy(gameObject);
-        }
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        Move();
+        HPBehaviour();
+    }
 
-        if (Vector3.Distance(transform.position, target.position) <= 2f)
+    private void Move()
+    {
+        Vector3 dir = TargetWaypoint.position - transform.position;
+        transform.Translate(dir.normalized * EnemySpeed * Time.deltaTime, Space.World);
+
+        if (Vector3.Distance(transform.position, TargetWaypoint.position) <= 2f)
         {
             GetNextWaypoint();
         }
+    }
 
+    public float GetBounty()
+    {
+        return Random.Range(minBounty, maxBounty);
+    }
+
+    private void HPBehaviour()
+    {
         if (HP < 30)
         {
             GetComponentInChildren<HPBar>().SetColor(new Color(200, 0, 0));
+            if (HP < 1)
+                Destroy(gameObject);
         }
         else
         {
@@ -53,7 +69,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         waypointIndex++;
-        target = Waypoints.points[waypointIndex];
+        TargetWaypoint = Waypoints.points[waypointIndex];
     }
 
     public void SetDamage(float damage)
@@ -68,6 +84,16 @@ public class Enemy : MonoBehaviour
 
     public float GetDamage()
     {
-        return Damage;
+        return EnemyDamage;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        EnemySpeed = speed;
+    }
+
+    public float GetSpeed()
+    {
+        return EnemySpeed;
     }
 }

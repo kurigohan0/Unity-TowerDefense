@@ -141,7 +141,6 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
-
         cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
     }
 }

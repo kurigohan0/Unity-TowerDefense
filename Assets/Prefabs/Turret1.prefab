@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2423207f298cf0b45b79cb3dd63e6f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 40
-  damage: 40
-  turnSpeed: 10
-  delay: 1
-  enemyTag: Enemy
+  AttackRange: 30
+  TowerDamage: 40
+  TowerTurnSpeed: 10
+  DelayBetweenShots: 1
+  EnemyTag: Enemy
 --- !u!1001 &1321085852275941940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93,6 +93,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MinDistance
       value: 3.5804596
+      objectReference: {fileID: 0}
+    - target: {fileID: 82603800130370074, guid: 2fafc82d17757493ca36f1cfb64b683d,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 133.78601
       objectReference: {fileID: 0}
     - target: {fileID: 135712686845337430, guid: 2fafc82d17757493ca36f1cfb64b683d,
         type: 3}
