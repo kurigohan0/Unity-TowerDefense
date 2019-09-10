@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private int minBounty;
     [SerializeField]
     private int maxBounty;
+    private Stats stats;
 
     private Transform TargetWaypoint;
     private int waypointIndex = 0;
@@ -21,6 +22,8 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         TargetWaypoint = Waypoints.points[0];
+        stats = GameObject.Find("EventSystem").GetComponent<Stats>();
+
     }
 
     // Update is called once per frame
@@ -41,7 +44,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public float GetBounty()
+    public int GetBounty()
     {
         return Random.Range(minBounty, maxBounty);
     }
@@ -52,13 +55,18 @@ public class Enemy : MonoBehaviour
         {
             GetComponentInChildren<HPBar>().SetColor(new Color(200, 0, 0));
             if (HP < 1)
+            {
+                stats.AddMoney(GetBounty());
                 Destroy(gameObject);
+            }
         }
         else
         {
             GetComponentInChildren<HPBar>().SetColor(GetComponentInChildren<HPBar>().GetDefaultColor());
         }
         GetComponentInChildren<Image>().fillAmount = GetHp() / 100;
+        GetComponentInChildren<Image>().fillOrigin = 1;
+
     }
 
     private void GetNextWaypoint()

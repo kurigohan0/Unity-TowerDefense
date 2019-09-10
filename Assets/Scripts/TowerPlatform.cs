@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class TowerPlatform : MonoBehaviour
 {
-    public GameObject Tower;
+    [SerializeField]
+    protected GameObject[] TowerSet = new GameObject[2];
     private bool alreadyPlaced = false;
+    private Canvas mainCanvas;
+    private Stats stats;
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        stats = GameObject.Find("EventSystem").GetComponent<Stats>();
+        mainCanvas = GameObject.FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -19,19 +23,33 @@ public class TowerPlatform : MonoBehaviour
         
     }
 
-    public void Place()
+    public void Place(int index)
     {
- 
-        Instantiate(Tower, transform.GetChild(0).transform.position, transform.GetChild(0).rotation);
-        
+        switch (index)
+        {
+            case 0:
+                stats.AddMoney(-10);
+                break;
+            case 1:
+                stats.AddMoney(-50);
+                break;
+        }
+        if (!alreadyPlaced)
+        {
+            Debug.Log("Place");
+            alreadyPlaced = true;
+
+            Instantiate(TowerSet[index], transform.GetChild(0).transform.position, transform.GetChild(0).rotation);
+        }
     }
 
     void OnMouseDown()
     {
         if (!alreadyPlaced)
         {
-            Place();
-            alreadyPlaced = true;
+            
+            mainCanvas.GetComponent<UIProcessing>().ShowTowerSelect(gameObject);
         }
     }
+
 }

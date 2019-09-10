@@ -1,23 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &645828483
+--- !u!114 &1900919541414626156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320639668791398478}
+  m_GameObject: {fileID: 6193802436558954930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2423207f298cf0b45b79cb3dd63e6f15, type: 3}
+  m_Script: {fileID: 11500000, guid: 4380f3518c68f36418cf3fccbb9b9637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Price: 10
+  Name: Common Turret
   AttackRange: 30
-  TowerDamage: 40
-  TowerTurnSpeed: 10
+  TowerDamage: 35
   DelayBetweenShots: 1
-  EnemyTag: Enemy
---- !u!1001 &1321085852275941940
+  enemies: []
+  isStaticTower: 0
+  TowerTurnSpeed: 30
+--- !u!1001 &6193122537600308168
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -26,19 +29,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1178177964436236, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
       propertyPath: m_Name
-      value: Turret1
+      value: CommonTurret
       objectReference: {fileID: 0}
     - target: {fileID: 4803831803365226, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 154.3
+      value: 127.2
       objectReference: {fileID: 0}
     - target: {fileID: 4803831803365226, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 4803831803365226, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 259.99
+      value: 261.31305
       objectReference: {fileID: 0}
     - target: {fileID: 4803831803365226, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -84,39 +87,28 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 23449375468130684, guid: 2fafc82d17757493ca36f1cfb64b683d,
+    - target: {fileID: 135712686845337430, guid: 2fafc82d17757493ca36f1cfb64b683d,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82603800130370074, guid: 2fafc82d17757493ca36f1cfb64b683d,
-        type: 3}
-      propertyPath: MinDistance
-      value: 3.5804596
-      objectReference: {fileID: 0}
-    - target: {fileID: 82603800130370074, guid: 2fafc82d17757493ca36f1cfb64b683d,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 133.78601
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135712686845337430, guid: 2fafc82d17757493ca36f1cfb64b683d,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135712686845337430, guid: 2fafc82d17757493ca36f1cfb64b683d,
+        type: 3}
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114386945016863856, guid: 2fafc82d17757493ca36f1cfb64b683d,
-        type: 3}
-      propertyPath: targeting.target
-      value: 
-      objectReference: {fileID: 4825962743570399021, guid: c5763548f85507943871000d45c6724a,
-        type: 3}
     m_RemovedComponents:
-    - {fileID: 114386945016863856, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
     - {fileID: 114770410877632020, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
+    - {fileID: 114386945016863856, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2fafc82d17757493ca36f1cfb64b683d, type: 3}
---- !u!1 &1320639668791398478 stripped
+--- !u!1 &6193802436558954930 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1876167613903482, guid: 2fafc82d17757493ca36f1cfb64b683d,
     type: 3}
-  m_PrefabInstance: {fileID: 1321085852275941940}
+  m_PrefabInstance: {fileID: 6193122537600308168}
   m_PrefabAsset: {fileID: 0}
