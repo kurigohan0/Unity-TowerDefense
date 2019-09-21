@@ -11,13 +11,13 @@ public class TowerCommon : Tower
     {
         targetEnemies = new List<GameObject>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CurrentTarget == null)
-            return;
+
 
         if (!isShoot)
         {
@@ -25,6 +25,9 @@ public class TowerCommon : Tower
         }
         if (!isStaticTower)
             LockToNewTarget();
+        if (CurrentTarget == null)
+            return;
+
     }
     void UpdateTarget()
     {
@@ -53,10 +56,17 @@ public class TowerCommon : Tower
     }
     void LockToNewTarget()
     {
-        Vector3 dir = CurrentTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * TowerTurnSpeed).eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        try
+        {
+            Vector3 dir = CurrentTarget.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * TowerTurnSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
+        catch
+        {
+
+        }
     }
 
     new public IEnumerator Shoot()
@@ -69,4 +79,6 @@ public class TowerCommon : Tower
             isShoot = false;
         }
     }
+
+
 }
