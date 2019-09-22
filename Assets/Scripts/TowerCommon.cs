@@ -17,8 +17,6 @@ public class TowerCommon : Tower
     // Update is called once per frame
     void Update()
     {
-
-
         if (!isShoot)
         {
             StartCoroutine(Shoot());
@@ -79,6 +77,4 @@ public class TowerCommon : Tower
             isShoot = false;
         }
     }
-
-
 }

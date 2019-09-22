@@ -27,8 +27,6 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(Camera.main.transform.position, DefaultPosition, Time.deltaTime * 20);
 
         }
-
-        Debug.Log(DefaultPosition + " | " + isFocusing);
     }
 
     public void GoToFocusPoint(GameObject focusPoint)

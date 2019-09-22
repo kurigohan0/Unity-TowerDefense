@@ -11,12 +11,29 @@ public class TowerUI : MonoBehaviour
     private GameObject TowerUIElement;
     [SerializeField]
     private Button BackButton;
-    
+    [SerializeField]
+    private Button UpgradeButton;
+    [SerializeField]
+    private Button SellButton;
+    [SerializeField]
+    private Button StatsButton;
+    [SerializeField]
+    private Button DestroyButton;
+    [SerializeField]
+    private Button InfoButton;
+
     // Start is called before the first frame update
     void Awake()
     {
         sr = TowerUIElement.GetComponent<SpriteRenderer>();
         BackButton = GetComponentInChildren<Button>();
+        UpgradeButton = GetComponentInChildren<Button>();
+        SellButton = GetComponentInChildren<Button>();
+        StatsButton = GetComponentInChildren<Button>();
+        DestroyButton = GetComponentInChildren<Button>();
+        StatsButton = GetComponentInChildren<Button>();
+
+
         sr.enabled = true;
         sr.enabled = false;
 
@@ -32,13 +49,22 @@ public class TowerUI : MonoBehaviour
     public void ShowUI()
     {
         sr.enabled = true;
-        BackButton.enabled = true;
+        ButtonState(true);
     }
 
     internal void HideUI()
     {
         sr.enabled = false;
-        BackButton.enabled = false;
+        ButtonState(false);
+    }
 
+    private void ButtonState(bool State)
+    {
+        BackButton.enabled = State;
+        UpgradeButton.enabled = State;
+        SellButton.enabled = State;
+        StatsButton.enabled = State;
+        DestroyButton.enabled = State;
+        InfoButton.enabled = State;
     }
 }

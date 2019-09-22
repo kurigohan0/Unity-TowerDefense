@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class TowerPlatform : MonoBehaviour
     private bool alreadyPlaced = false;
     private Canvas mainCanvas;
     private Stats stats;
+    public GameObject CurrentTower { get; set; }
 
     // Start is called before the first frame update
     void Awake()
@@ -25,31 +27,54 @@ public class TowerPlatform : MonoBehaviour
 
     public void Place(int index)
     {
-        switch (index)
+        try
         {
-            case 0:
-                stats.AddMoney(-10);
-                break;
-            case 1:
-                stats.AddMoney(-50);
-                break;
+            CurrentTower.GetComponent<Tower>().FocusTower();
         }
-        if (!alreadyPlaced)
+        catch (NullReferenceException)
         {
-            Debug.Log("Place");
-            alreadyPlaced = true;
+            CurrentTower = null;
+            Debug.Log("Err, null");
+        }
+        if (CurrentTower == null)
+        {
+            switch (index)
+            {
+                case 0:
+                    stats.AddMoney(-TowerSet[index].transform.GetChild(0).GetComponent<Building>().GetPrice());
+                    CurrentTower = TowerSet[index];
 
-            Instantiate(TowerSet[index], transform.GetChild(0).transform.position, transform.GetChild(0).rotation);
+                    break;
+                case 1:
+                    stats.AddMoney(-TowerSet[index].transform.GetChild(0).GetComponent<Building>().GetPrice());
+                    CurrentTower = TowerSet[index];
+                    break;
+            }
+
+            Instantiate(CurrentTower, transform.GetChild(0).transform.position, transform.GetChild(0).rotation);
         }
+
     }
 
     void OnMouseDown()
     {
         if (!alreadyPlaced)
         {
-            
             mainCanvas.GetComponent<UIProcessing>().ShowTowerSelect(gameObject);
         }
+    }
+
+    public bool isPlaced()
+    {
+        if (alreadyPlaced)
+            return true;
+        else
+            return false;
+    }
+
+    public void SetPlace(bool placed)
+    {
+        alreadyPlaced = placed;
     }
 
 }

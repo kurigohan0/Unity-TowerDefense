@@ -33,6 +33,7 @@ public class Tower : Building
     // Update is called once per frame
     void Update()
     {
+
     }
 
     
@@ -44,9 +45,14 @@ public class Tower : Building
 
     void OnMouseDown()
     {
+        FocusTower();   
+    }
+
+    public void FocusTower()
+    {
         if (!CameraObject.isFocusing)
         {
-            CameraObject.GoToFocusPoint(FocusPoint);  
+            CameraObject.GoToFocusPoint(FocusPoint);
             UICanvas.GetComponent<TowerUI>().ShowUI();
         }
     }
@@ -55,9 +61,35 @@ public class Tower : Building
     {
         CameraObject.ReturnToDefaultPosition();
         UICanvas.GetComponent<TowerUI>().HideUI();
+    }
+
+    public void DestroyTower()
+    {
 
     }
 
+    public void SellTower()
+    {
+        Sell();
+    }
 
+    public void ShowInfoTower()
+    {
 
+    }
+
+    public void StatsTower()
+    {
+
+    }
+
+    public void UpgradeTower()
+    {
+
+    }
+
+    public void InfoTower()
+    {
+
+    }
 }
