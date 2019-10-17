@@ -10,7 +10,8 @@ public class TowerPlatform : MonoBehaviour
     private bool alreadyPlaced = false;
     private Canvas mainCanvas;
     private Stats stats;
-    public GameObject CurrentTower { get; set; }
+    [SerializeField]
+    public GameObject CurrentTower;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +31,11 @@ public class TowerPlatform : MonoBehaviour
         try
         {
             CurrentTower.GetComponent<Tower>().FocusTower();
+        }
+        catch (UnassignedReferenceException)
+        {
+            CurrentTower = null;
+            Debug.Log("Err, null");
         }
         catch (NullReferenceException)
         {

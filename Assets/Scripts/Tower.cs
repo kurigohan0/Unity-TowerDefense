@@ -90,6 +90,7 @@ public class Tower : Building
 
     public void InfoTower()
     {
-
+        Debug.Log(UICanvas.transform.position);
+        GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowInfoTower(this);
     }
 }

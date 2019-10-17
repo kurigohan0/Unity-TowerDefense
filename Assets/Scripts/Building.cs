@@ -9,7 +9,9 @@ public class Building : MonoBehaviour
     [SerializeField]
     protected int Price;
     [SerializeField]
-    protected string Name;
+    public string Name;
+    [SerializeField]
+    public string Description;
     [SerializeField]
     protected GameObject BuildingObject;
     private GameObject Platform;

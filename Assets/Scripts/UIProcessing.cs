@@ -13,6 +13,7 @@ public class UIProcessing : MonoBehaviour
     private RectTransform TowerSelectPanel;
     private Stats stats;
     private GameObject SelectedPlatform;
+    private RectTransform InfoPanel;
 
     void Awake()
     {
@@ -23,7 +24,9 @@ public class UIProcessing : MonoBehaviour
         TowerSelectPanel.gameObject.SetActive(false);
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
 
+        InfoPanel = GameObject.Find("InfoPanel").GetComponent<RectTransform>();
 
+        InfoPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,19 +35,34 @@ public class UIProcessing : MonoBehaviour
         WaveCounterText.SetText("Wave: " + GameObject.FindObjectOfType<WaveSpawn>().GetWave().ToString());
         HealthText.SetText("Health: " + GameObject.FindObjectOfType<FinalPoint>().GetHP().ToString());
         MoneyText.SetText("Money: " + stats.GetMoney());
+
+
     }
 
     public void ShowTowerSelect(GameObject selectedPlatform)
     {
         TowerSelectPanel.gameObject.SetActive(true);
         SelectedPlatform = selectedPlatform;
-        Debug.Log(selectedPlatform.name);
     }
     public void HideTowerSelect()
     {
         SelectedPlatform = null; 
         TowerSelectPanel.gameObject.SetActive(false);
     }
+
+    public void ShowInfoTower(Tower tower)
+    {
+        InfoPanel.gameObject.SetActive(true);
+        GameObject.Find("TowerDescriptionText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Description);
+        GameObject.Find("TowerNameText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Name);
+
+    }
+
+    public void HideInfoTower()
+    {
+        InfoPanel.gameObject.SetActive(false);
+    }
+
     public void SelectedCommonTower()
     {
         if (stats.GetMoney() >= 10)
@@ -63,4 +81,6 @@ public class UIProcessing : MonoBehaviour
 
         }
     }
+
+
 }
