@@ -39,6 +39,7 @@ public class TowerCommon : Tower
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
+
             }
         }
 

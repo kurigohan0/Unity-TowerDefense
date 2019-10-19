@@ -15,7 +15,7 @@ public class Building : MonoBehaviour
     [SerializeField]
     protected GameObject BuildingObject;
     private GameObject Platform;
-    private Stats stats;
+    protected Stats stats;
 
     public int GetPrice()
     {

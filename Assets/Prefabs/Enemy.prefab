@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1838501, g: 0.7830189, b: 0.121885024, a: 1}
+  m_Color: {r: 0, g: 0.81568635, b: 0.5921569, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68ed889deba15341b7f77e3f7e38585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultColor: {r: 0.18431373, g: 0.7843138, b: 0.121568635, a: 1}
+  DefaultColor: {r: 0, g: 0.81568635, b: 0.5921569, a: 1}
 --- !u!1 &4471426258989521409
 GameObject:
   m_ObjectHideFlags: 0

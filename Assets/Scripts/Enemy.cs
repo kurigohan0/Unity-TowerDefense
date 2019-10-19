@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int maxBounty;
     private Stats stats;
+    private bool stop;
 
     private Transform TargetWaypoint;
     private int waypointIndex = 0;
@@ -23,14 +24,21 @@ public class Enemy : MonoBehaviour
     {
         TargetWaypoint = Waypoints.points[0];
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
+        stop = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(!stop)
+            Move();
         HPBehaviour();
+    }
+
+    public void Stop()
+    {
+        stop = true;
     }
 
     private void Move()

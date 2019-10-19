@@ -12,6 +12,8 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     private float TimeBetweenWaves = 5f;
 
+    private bool stop = false;
+
     void Start()
     {
         SpawnPosition = transform;
@@ -20,13 +22,21 @@ public class WaveSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown <= 0f)
+        if (!stop)
         {
-            StartCoroutine("CreateWawe");
-            countdown = TimeBetweenWaves;
-        }
+            if (countdown <= 0f)
+            {
+                StartCoroutine("CreateWawe");
+                countdown = TimeBetweenWaves;
+            }
 
-        countdown -= Time.deltaTime;
+            countdown -= Time.deltaTime;
+        }
+    }
+
+    public void Stop()
+    {
+        stop = true;
     }
 
     IEnumerator CreateWawe()

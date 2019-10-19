@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class UIProcessing : MonoBehaviour
@@ -15,6 +16,7 @@ public class UIProcessing : MonoBehaviour
     private GameObject SelectedPlatform;
     private RectTransform InfoPanel;
     private RectTransform StatsPanel;
+    private GameObject GameOverPanel;
 
 
     void Awake()
@@ -28,9 +30,13 @@ public class UIProcessing : MonoBehaviour
 
         InfoPanel = GameObject.Find("InfoPanel").GetComponent<RectTransform>();
         StatsPanel = GameObject.Find("StatsPanel").GetComponent<RectTransform>();
+        GameOverPanel = GameObject.Find("GameOverPanel");
+
 
         InfoPanel.gameObject.SetActive(false);
         StatsPanel.gameObject.SetActive(false);
+        GameOverPanel.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -81,6 +87,11 @@ public class UIProcessing : MonoBehaviour
         StatsPanel.gameObject.SetActive(false);
     }
 
+    public void ShowGameOver()
+    {
+        GameOverPanel.gameObject.SetActive(true);
+    }
+
     public void SelectedCommonTower()
     {
         if (stats.GetMoney() >= 10)
@@ -88,6 +99,11 @@ public class UIProcessing : MonoBehaviour
             SelectedPlatform.GetComponent<TowerPlatform>().Place(0);
             TowerSelectPanel.gameObject.SetActive(false);
         }
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void SelectedAOETower()

@@ -7,16 +7,22 @@ public class FinalPoint : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private float HP;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (HP <= 0)
+        {
+            HP = 0;
+            GameObject.Find("SpawnPoint").GetComponent<WaveSpawn>().Stop();
+            Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+            foreach (var enemy in enemies)
+            {
+                enemy.Stop();
+            }
+            GameObject.Find("Canvas").GetComponent<UIProcessing>().ShowGameOver();
+        }
+
     }
+
 
     public void SetHP(float hp)
     {
