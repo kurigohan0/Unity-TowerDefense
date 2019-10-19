@@ -85,6 +85,7 @@ public class Tower : Building
 
     public void DestroyTower()
     {
+
         ReturnCam();
         Destroy(BuildingObject, 0f);
     }
