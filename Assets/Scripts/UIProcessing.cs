@@ -14,6 +14,8 @@ public class UIProcessing : MonoBehaviour
     private Stats stats;
     private GameObject SelectedPlatform;
     private RectTransform InfoPanel;
+    private RectTransform StatsPanel;
+
 
     void Awake()
     {
@@ -25,8 +27,10 @@ public class UIProcessing : MonoBehaviour
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
 
         InfoPanel = GameObject.Find("InfoPanel").GetComponent<RectTransform>();
+        StatsPanel = GameObject.Find("StatsPanel").GetComponent<RectTransform>();
 
         InfoPanel.gameObject.SetActive(false);
+        StatsPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,6 +65,19 @@ public class UIProcessing : MonoBehaviour
     public void HideInfoTower()
     {
         InfoPanel.gameObject.SetActive(false);
+    }
+
+    public void ShowStatsTower(Tower tower)
+    {
+        StatsPanel.gameObject.SetActive(true);
+        GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetComponent<Tower>().GetLevel().ToString()} \r\n " +
+            $"Damage: ");
+        GameObject.Find("TowerStatsNameText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Name);
+    }
+
+    public void HideStatsTower()
+    {
+        StatsPanel.gameObject.SetActive(false);
     }
 
     public void SelectedCommonTower()

@@ -24,10 +24,12 @@ public class Tower : Building
     protected GameObject FocusPoint;
     [SerializeField]
     protected GameObject UICanvas;
+    protected int Level;
     private CameraController CameraObject;
     void Start()
     {
         CameraObject = Camera.main.GetComponent<CameraController>();
+        Level = 1;
     }
 
     // Update is called once per frame
@@ -65,7 +67,8 @@ public class Tower : Building
 
     public void DestroyTower()
     {
-
+        ReturnCam();
+        Destroy(BuildingObject, 0f);
     }
 
     public void SellTower()
@@ -73,14 +76,9 @@ public class Tower : Building
         Sell();
     }
 
-    public void ShowInfoTower()
-    {
-
-    }
-
     public void StatsTower()
     {
-
+        GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowStatsTower(this);
     }
 
     public void UpgradeTower()
@@ -88,9 +86,13 @@ public class Tower : Building
 
     }
 
+    public int GetLevel()
+    {
+        return Level;
+    }
+
     public void InfoTower()
     {
-        Debug.Log(UICanvas.transform.position);
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowInfoTower(this);
     }
 }
