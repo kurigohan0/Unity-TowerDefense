@@ -71,7 +71,7 @@ public class UIProcessing : MonoBehaviour
     {
         StatsPanel.gameObject.SetActive(true);
         GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetComponent<Tower>().GetLevel().ToString()} \r\n " +
-            $"Damage: ");
+            $"Damage: {tower.GetComponent<Tower>().GetDamage().ToString()}");
         GameObject.Find("TowerStatsNameText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Name);
     }
 

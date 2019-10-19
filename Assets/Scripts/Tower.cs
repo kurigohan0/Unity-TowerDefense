@@ -91,6 +91,11 @@ public class Tower : Building
         return Level;
     }
 
+    public float GetDamage()
+    {
+        return TowerDamage;
+    }
+
     public void InfoTower()
     {
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowInfoTower(this);
