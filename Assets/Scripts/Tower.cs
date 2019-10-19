@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Tower : Building
@@ -25,11 +26,28 @@ public class Tower : Building
     [SerializeField]
     protected GameObject UICanvas;
     protected int Level;
+    protected Stats stats;
+    public TowerUpgrade[] UpgradeArray = new TowerUpgrade[5];
+
     private CameraController CameraObject;
     void Start()
     {
         CameraObject = Camera.main.GetComponent<CameraController>();
         Level = 1;
+        stats = GameObject.Find("EventSystem").GetComponent<Stats>();
+        for (int i = 1; i < UpgradeArray.Length; i++)
+        {
+            UpgradeArray[i] = new TowerUpgrade
+            {
+                Damage = (i * 10) + 45,
+                Cost = i * 20
+            };
+            Debug.Log(UpgradeArray[i].Damage + " | " + UpgradeArray[i].Cost);
+        }
+        
+
+
+
     }
 
     // Update is called once per frame
@@ -83,6 +101,12 @@ public class Tower : Building
 
     public void UpgradeTower()
     {
+        if ((stats.GetMoney() >= UpgradeArray[Level].Cost) && Level < UpgradeArray.Length)
+        {
+            stats.AddMoney(-UpgradeArray[Level].Cost);
+            TowerDamage = UpgradeArray[Level].Damage;
+            Level++;
+        }
 
     }
 

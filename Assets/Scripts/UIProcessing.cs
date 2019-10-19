@@ -70,8 +70,9 @@ public class UIProcessing : MonoBehaviour
     public void ShowStatsTower(Tower tower)
     {
         StatsPanel.gameObject.SetActive(true);
-        GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetComponent<Tower>().GetLevel().ToString()} \r\n " +
-            $"Damage: {tower.GetComponent<Tower>().GetDamage().ToString()}");
+        GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetLevel().ToString()} \r\n " +
+            $"Damage: {tower.GetDamage().ToString()} \r\n\r\n Next upgrade \r\n Cost: {tower.UpgradeArray[tower.GetLevel()].Cost} \r\n" +
+                                                                                  $"Damage: {tower.UpgradeArray[tower.GetLevel()].Damage}");
         GameObject.Find("TowerStatsNameText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Name);
     }
 
