@@ -12,6 +12,9 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     private float TimeBetweenWaves = 5f;
 
+
+    [SerializeField] private int MaxWaves;
+
     private bool stop = false;
 
     void Start()
@@ -22,6 +25,7 @@ public class WaveSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!stop)
         {
             if (countdown <= 0f)
@@ -32,6 +36,19 @@ public class WaveSpawn : MonoBehaviour
 
             countdown -= Time.deltaTime;
         }
+
+        if (waveNumber == MaxWaves)
+        {
+            Stop();
+
+            StopCoroutine("CreateWawe");
+            Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+            if (enemies.Length == 0)
+            {
+                GameObject.Find("Canvas").GetComponent<UIProcessing>().ShowLevelComplete();
+            }
+        }
+        
     }
 
     public void Stop()

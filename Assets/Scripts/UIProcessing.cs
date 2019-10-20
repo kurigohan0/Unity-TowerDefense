@@ -17,6 +17,7 @@ public class UIProcessing : MonoBehaviour
     private RectTransform InfoPanel;
     private RectTransform StatsPanel;
     private GameObject GameOverPanel;
+    private GameObject LevelComplete;
 
 
     void Awake()
@@ -31,11 +32,12 @@ public class UIProcessing : MonoBehaviour
         InfoPanel = GameObject.Find("InfoPanel").GetComponent<RectTransform>();
         StatsPanel = GameObject.Find("StatsPanel").GetComponent<RectTransform>();
         GameOverPanel = GameObject.Find("GameOverPanel");
-
+        LevelComplete = GameObject.Find("LevelComplete");
 
         InfoPanel.gameObject.SetActive(false);
         StatsPanel.gameObject.SetActive(false);
         GameOverPanel.gameObject.SetActive(false);
+        LevelComplete.gameObject.SetActive(false);
 
     }
 
@@ -43,7 +45,7 @@ public class UIProcessing : MonoBehaviour
     void Update()
     {
         WaveCounterText.SetText("Wave: " + GameObject.FindObjectOfType<WaveSpawn>().GetWave().ToString());
-        HealthText.SetText("Health: " + GameObject.FindObjectOfType<FinalPoint>().GetHP().ToString());
+        HealthText.SetText("HP: " + GameObject.FindObjectOfType<FinalPoint>().GetHP().ToString() + " / 100" );
         MoneyText.SetText("Money: " + stats.GetMoney());
 
 
@@ -90,6 +92,12 @@ public class UIProcessing : MonoBehaviour
     public void ShowGameOver()
     {
         GameOverPanel.gameObject.SetActive(true);
+    }
+
+    public void ShowLevelComplete()
+    {
+        LevelComplete.gameObject.SetActive(true);
+
     }
 
     public void SelectedCommonTower()

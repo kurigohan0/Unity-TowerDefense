@@ -42,7 +42,6 @@ public class Tower : Building
                 Damage = (i * 10) + 45,
                 Cost = i * 20
             };
-            Debug.Log(UpgradeArray[i].Damage + " | " + UpgradeArray[i].Cost);
         }
         
 
@@ -102,11 +101,12 @@ public class Tower : Building
 
     public void UpgradeTower()
     {
-        if ((stats.GetMoney() >= UpgradeArray[Level].Cost) && Level < UpgradeArray.Length)
+        if ((stats.GetMoney() >= UpgradeArray[Level].Cost) && Level + 1 < UpgradeArray.Length)
         {
             stats.AddMoney(-UpgradeArray[Level].Cost);
             TowerDamage = UpgradeArray[Level].Damage;
             Level++;
+            Debug.Log(Level);
         }
 
     }
