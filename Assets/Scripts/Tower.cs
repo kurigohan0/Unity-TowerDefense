@@ -27,7 +27,7 @@ public class Tower : Building
     protected GameObject UICanvas;
     protected int Level;
     protected Stats stats;
-    public TowerUpgrade[] UpgradeArray = new TowerUpgrade[5];
+    public TowerUpgrade[] UpgradeArray = new TowerUpgrade[6];
 
     private CameraController CameraObject;
     void Start()
@@ -106,6 +106,7 @@ public class Tower : Building
             stats.AddMoney(-UpgradeArray[Level].Cost);
             TowerDamage = UpgradeArray[Level].Damage;
             Level++;
+            Price = UpgradeArray[Level].Cost;
             Debug.Log(Level);
         }
 

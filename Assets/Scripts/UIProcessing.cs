@@ -78,9 +78,17 @@ public class UIProcessing : MonoBehaviour
     public void ShowStatsTower(Tower tower)
     {
         StatsPanel.gameObject.SetActive(true);
-        GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetLevel().ToString()} \r\n " +
-            $"Damage: {tower.GetDamage().ToString()} \r\n\r\n Next upgrade \r\n Cost: {tower.UpgradeArray[tower.GetLevel()].Cost} \r\n" +
-                                                                                  $"Damage: {tower.UpgradeArray[tower.GetLevel()].Damage}");
+        if (tower.GetLevel() < tower.UpgradeArray.Length - 1)
+        {
+            GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText($"Level: {tower.GetLevel().ToString()} \r\n " +
+                                                                                      $"Damage: {tower.GetDamage().ToString()} \r\n\r\n Next upgrade \r\n Cost: {tower.UpgradeArray[tower.GetLevel()].Cost} \r\n" +
+                                                                                      $"Damage: {tower.UpgradeArray[tower.GetLevel()].Damage}");
+        }
+        else
+        {
+            GameObject.Find("TowerStatsText").GetComponent<TextMeshProUGUI>().SetText("There is no updates more.");
+        }
+        
         GameObject.Find("TowerStatsNameText").GetComponent<TextMeshProUGUI>().SetText(tower.GetComponent<Tower>().Name);
     }
 
