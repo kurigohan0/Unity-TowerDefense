@@ -3115,6 +3115,7 @@ GameObject:
   - component: {fileID: 712239045}
   - component: {fileID: 712239044}
   - component: {fileID: 712239047}
+  - component: {fileID: 712239048}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3183,6 +3184,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Money: 1000
+--- !u!114 &712239048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712239043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06259327c04099b4fbb5f2a9a2e05b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &727278875
 GameObject:
   m_ObjectHideFlags: 0
@@ -6544,8 +6557,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 496409168}
-        m_MethodName: SelectedCommonTower
+      - m_Target: {fileID: 712239048}
+        m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6976,8 +6989,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 496409168}
-        m_MethodName: SelectedCommonTower
+      - m_Target: {fileID: 712239048}
+        m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7818,7 +7831,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next level
+  m_Text: Again
 --- !u!222 &1907304333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9344,7 +9357,7 @@ PrefabInstance:
     - target: {fileID: 1811935680563117958, guid: dbed2135f1020af46ba3638137f8121d,
         type: 3}
       propertyPath: MaxWaves
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbed2135f1020af46ba3638137f8121d, type: 3}
