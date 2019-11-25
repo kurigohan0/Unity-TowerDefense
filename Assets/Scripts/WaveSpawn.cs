@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, описывающий логику спавнера волн
+/// </summary>
 public class WaveSpawn : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private Transform EnemyPrefab;
     private float countdown = 2f;
     [SerializeField] private Transform SpawnPosition;
     private int waveNumber = 0;
     [SerializeField]
     private float TimeBetweenWaves = 5f;
-
-
-    [SerializeField] private int MaxWaves;
-
+    [SerializeField]
+    private int MaxWaves;
     private bool stop = false;
 
     void Start()
@@ -25,7 +25,6 @@ public class WaveSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!stop)
         {
             if (countdown <= 0f)
@@ -33,14 +32,12 @@ public class WaveSpawn : MonoBehaviour
                 StartCoroutine("CreateWawe");
                 countdown = TimeBetweenWaves;
             }
-
             countdown -= Time.deltaTime;
         }
 
         if (waveNumber == MaxWaves)
         {
             Stop();
-
             StopCoroutine("CreateWawe");
             Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
             if (enemies.Length == 0)
@@ -48,7 +45,6 @@ public class WaveSpawn : MonoBehaviour
                 GameObject.Find("Canvas").GetComponent<UIProcessing>().ShowLevelComplete();
             }
         }
-        
     }
 
     public void Stop()
@@ -56,6 +52,10 @@ public class WaveSpawn : MonoBehaviour
         stop = true;
     }
 
+    /// <summary>
+    /// Создание волны
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CreateWawe()
     {
         waveNumber++;
@@ -67,11 +67,18 @@ public class WaveSpawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Создание врага
+    /// </summary>
     private void SpawnEnemy()
     {
         Instantiate(EnemyPrefab, SpawnPosition.position, SpawnPosition.rotation);
     }
 
+    /// <summary>
+    /// Возвращает номер волны
+    /// </summary>
+    /// <returns>Номер волны</returns>
     public int GetWave()
     {
         return waveNumber;

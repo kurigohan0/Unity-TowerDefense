@@ -242,13 +242,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d134af4e4a184a4badd30bf29d41b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 1
+  Price: 50
   Name: 'Zone damage Turret. '
   Description: Turret deals small damage to all enemies within a radius.
   BuildingObject: {fileID: 1334389061075277561}
   CurrentTarget: {fileID: 0}
   AttackRange: 30
-  TowerDamage: 10
+  TowerDamage: 5
   DelayBetweenShots: 0.5
   enemies: []
   isStaticTower: 1

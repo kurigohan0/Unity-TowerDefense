@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс, описывающий сущность "Враг"
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
@@ -41,6 +44,9 @@ public class Enemy : MonoBehaviour
         stop = true;
     }
 
+    /// <summary>
+    /// Перемещение врага
+    /// </summary>
     private void Move()
     {
         Vector3 dir = TargetWaypoint.position - transform.position;
@@ -52,11 +58,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Награда за уничтожение
+    /// </summary>
+    /// <returns></returns>
     public int GetBounty()
     {
         return Random.Range(minBounty, maxBounty);
     }
 
+    /// <summary>
+    /// Логика поведения при разном количестве здоровья
+    /// </summary>
     private void HPBehaviour()
     {
         if (HP < 30)
@@ -74,9 +87,11 @@ public class Enemy : MonoBehaviour
         }
         GetComponentInChildren<Image>().fillAmount = GetHp() / 100;
         GetComponentInChildren<Image>().fillOrigin = 1;
-
     }
 
+    /// <summary>
+    /// Перемещение к следующей точке
+    /// </summary>
     private void GetNextWaypoint()
     {
         if (Waypoints.points[waypointIndex].name == "FinalPoint")

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, описывающий постройки
+/// </summary>
 public class Building : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -39,16 +42,17 @@ public class Building : MonoBehaviour
 
     public void Sell()
     {
-        Debug.Log("Destroy");
         Camera.main.GetComponent<CameraController>().ReturnToDefaultPosition();
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
         stats.AddMoney(GetPrice()/2);
         Destroy(BuildingObject, 0f);
     }
-
+    /// <summary>
+    /// Устанавливает платформу для башни
+    /// </summary>
+    /// <param name="platform">Платформа для башни</param>
     public void SetPlatform(GameObject platform)
     {
-        Debug.Log("-----" + Platform.name);
         Platform = platform;
     }
 }

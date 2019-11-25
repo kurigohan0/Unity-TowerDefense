@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс логики полоски здоровья над врагами
+/// </summary>
 public class HPBar : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -23,7 +26,6 @@ public class HPBar : MonoBehaviour
     public void SetColor(Color color)
     {
         GetComponent<Image>().color = color;
-
     }
 
     public Color GetColor()

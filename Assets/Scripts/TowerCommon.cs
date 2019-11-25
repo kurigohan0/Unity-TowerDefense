@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, описывающий обычную башню
+/// </summary>
 public class TowerCommon : Tower
 {
     [SerializeField]
-    protected float TowerTurnSpeed;
-    // Start is called before the first frame update
+    protected float TowerTurnSpeed; 
     void Awake()
     {
         targetEnemies = new List<GameObject>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-
     }
 
     // Update is called once per frame
@@ -27,6 +28,9 @@ public class TowerCommon : Tower
             return;
 
     }
+    /// <summary>
+    /// Изменение цели башни
+    /// </summary>
     void UpdateTarget()
     {
         enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
@@ -43,7 +47,7 @@ public class TowerCommon : Tower
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= AttackRange)
+        if (nearestEnemy != null && shortestDistance <= AttackRange) 
         {
             CurrentTarget = nearestEnemy.transform;
             targetEnemy = nearestEnemy.GetComponent<Enemy>();
@@ -53,6 +57,10 @@ public class TowerCommon : Tower
             CurrentTarget = null;
         }
     }
+
+    /// <summary>
+    /// Фиксирование на новую цель
+    /// </summary>
     void LockToNewTarget()
     {
         try
@@ -67,7 +75,10 @@ public class TowerCommon : Tower
 
         }
     }
-
+    /// <summary>
+    /// Выстрел
+    /// </summary>
+    /// <returns></returns>
     new public IEnumerator Shoot()
     {
         if (CurrentTarget != null)

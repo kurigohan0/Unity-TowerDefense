@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//старый код был тут https://kylewbanks.com/blog/unity3d-panning-and-pinch-to-zoom-camera-with-touch-and-mouse-input
 
+/// <summary>
+/// Класс контроллера камеры
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     public bool isFocusing { get; set; }
@@ -25,10 +27,13 @@ public class CameraController : MonoBehaviour
         else
         {
             transform.position = Vector3.Lerp(Camera.main.transform.position, DefaultPosition, Time.deltaTime * 20);
-
         }
     }
 
+    /// <summary>
+    /// Устанавливает фокусную точку, куда будет стремиться камера
+    /// </summary>
+    /// <param name="focusPoint">Фокусная точка</param>
     public void GoToFocusPoint(GameObject focusPoint)
     {
         FocusPoint = focusPoint;
@@ -38,7 +43,5 @@ public class CameraController : MonoBehaviour
     public void ReturnToDefaultPosition()
     {
         isFocusing = false;
-        
     }
-    
 }

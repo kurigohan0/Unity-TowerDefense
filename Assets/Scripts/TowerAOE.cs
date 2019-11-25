@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, описывающий башню с радиусом урона
+/// </summary>
 public class TowerAOE : Tower
 {
     Quaternion DefaultPos;
-    // Start is called before the first frame update
     void Awake()
     {
         targetEnemies = new List<GameObject>();
@@ -21,9 +23,12 @@ public class TowerAOE : Tower
         {
             StartCoroutine(Shoot());
         }
-        
     }
 
+    /// <summary>
+    /// Выстрел башни
+    /// </summary>
+    /// <returns></returns>
     new IEnumerator Shoot()
     {
         isShoot = true;
@@ -39,20 +44,26 @@ public class TowerAOE : Tower
         isShoot = false;
     }
 
+    /// <summary>
+    /// При попадании врага в радиус башни
+    /// </summary>
+    /// <param name="other">Коллайдер врага</param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            // Filter by using specific layers for this object and "others" instead of using tags
             targetEnemies.Add(enemy.gameObject);
         }
     }
 
+    /// <summary>
+    /// При выходе врага из радиуса башни
+    /// </summary>
+    /// <param name="other">Коллайдер врага</param>
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            // Filter by using specific layers for this object and "others" instead of using tags
             targetEnemies.Remove(enemy.gameObject);
         }
     }

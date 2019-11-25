@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Общая игровая статистика
+/// </summary>
 public class Stats : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     private int Money;
-
-    // Update is called once per frame
 
     public int GetMoney()
     {

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс, описывающий точки перемещения врагов
+/// </summary>
 public class Waypoints : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static Transform[] points;
 
     void Awake()

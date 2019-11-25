@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс платформы для башни
+/// </summary>
 public class TowerPlatform : MonoBehaviour
 {
     [SerializeField]
@@ -13,19 +16,16 @@ public class TowerPlatform : MonoBehaviour
     [SerializeField]
     public GameObject CurrentTower;
 
-    // Start is called before the first frame update
     void Awake()
     {
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
         mainCanvas = GameObject.FindObjectOfType<Canvas>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Установка башни
+    /// </summary>
+    /// <param name="index">Индекс типа башни</param>
     public void Place(int index)
     {
         try
@@ -49,14 +49,12 @@ public class TowerPlatform : MonoBehaviour
                 case 0:
                     stats.AddMoney(-TowerSet[index].transform.GetChild(0).GetComponent<Building>().GetPrice());
                     CurrentTower = TowerSet[index];
-
                     break;
                 case 1:
                     stats.AddMoney(-TowerSet[index].transform.GetChild(0).GetComponent<Building>().GetPrice());
                     CurrentTower = TowerSet[index];
                     break;
             }
-
             Instantiate(CurrentTower, transform.GetChild(0).transform.position, transform.GetChild(0).rotation);
         }
 
@@ -70,6 +68,10 @@ public class TowerPlatform : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Проверка на уже установленную башню
+    /// </summary>
+    /// <returns></returns>
     public bool isPlaced()
     {
         if (alreadyPlaced)
@@ -78,6 +80,10 @@ public class TowerPlatform : MonoBehaviour
             return false;
     }
 
+    /// <summary>
+    /// Фиксация установки башни
+    /// </summary>
+    /// <param name="placed">Установлена ли башня</param>
     public void SetPlace(bool placed)
     {
         alreadyPlaced = placed;

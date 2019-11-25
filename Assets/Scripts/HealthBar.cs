@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс для полоски здоровья над врагами
+/// </summary>
 public class HealthBar : MonoBehaviour
 {
     // Start is called before the first frame update

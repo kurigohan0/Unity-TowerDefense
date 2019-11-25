@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Интерфейс башни
+/// </summary>
 public class TowerUI : MonoBehaviour
 {
     SpriteRenderer sr;
@@ -22,7 +25,9 @@ public class TowerUI : MonoBehaviour
     [SerializeField]
     private Button InfoButton;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Получение кнопок в меню
+    /// </summary>
     void Awake()
     {
         sr = TowerUIElement.GetComponent<SpriteRenderer>();
@@ -32,11 +37,8 @@ public class TowerUI : MonoBehaviour
         StatsButton = GetComponentInChildren<Button>();
         DestroyButton = GetComponentInChildren<Button>();
         StatsButton = GetComponentInChildren<Button>();
-
-
         sr.enabled = true;
         sr.enabled = false;
-
     }
 
     // Update is called once per frame
@@ -58,6 +60,10 @@ public class TowerUI : MonoBehaviour
         ButtonState(false);
     }
 
+    /// <summary>
+    /// Включение или отключение кнопок
+    /// </summary>
+    /// <param name="State">Положение</param>
     private void ButtonState(bool State)
     {
         BackButton.enabled = State;

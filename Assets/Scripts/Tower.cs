@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 
+/// <summary>
+/// Класс описывающий башню
+/// </summary>
 public class Tower : Building
 {
     [SerializeField]
@@ -37,25 +40,21 @@ public class Tower : Building
         stats = GameObject.Find("EventSystem").GetComponent<Stats>();
         for (int i = 1; i < UpgradeArray.Length; i++)
         {
-            UpgradeArray[i] = new TowerUpgrade
+            UpgradeArray[i] = new TowerUpgrade //Занесение данных о улучшении башни
             {
                 Damage = (i * 10) + 45,
                 Cost = i * 20
             };
         }
-        
-
-
-
     }
-
-    // Update is called once per frame
     void Update()
     {
 
     }
 
-    
+    /// <summary>
+    /// Отображение радиуса башни в редакторе
+    /// </summary>
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
@@ -67,6 +66,9 @@ public class Tower : Building
         FocusTower();   
     }
 
+    /// <summary>
+    /// Отображение меню при фокусе на башню
+    /// </summary>
     public void FocusTower()
     {
         if (!CameraObject.isFocusing)
@@ -76,6 +78,9 @@ public class Tower : Building
         }
     }
 
+    /// <summary>
+    /// Возврат камеры к позиции по умолчанию
+    /// </summary>
     public void ReturnCam()
     {
         CameraObject.ReturnToDefaultPosition();
@@ -84,7 +89,6 @@ public class Tower : Building
 
     public void DestroyTower()
     {
-
         ReturnCam();
         Destroy(BuildingObject, 0f);
     }
@@ -94,11 +98,17 @@ public class Tower : Building
         Sell();
     }
 
+    /// <summary>
+    /// Статы башни
+    /// </summary>
     public void StatsTower()
     {
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowStatsTower(this);
     }
 
+    /// <summary>
+    /// Улучшение башни
+    /// </summary>
     public void UpgradeTower()
     {
         if ((stats.GetMoney() >= UpgradeArray[Level].Cost) && Level + 1 < UpgradeArray.Length)
@@ -109,7 +119,6 @@ public class Tower : Building
             Price = UpgradeArray[Level].Cost;
             Debug.Log(Level);
         }
-
     }
 
     public int GetLevel()
@@ -122,6 +131,9 @@ public class Tower : Building
         return TowerDamage;
     }
 
+    /// <summary>
+    /// Отображение информации о башне
+    /// </summary>
     public void InfoTower()
     {
         GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIProcessing>().ShowInfoTower(this);
